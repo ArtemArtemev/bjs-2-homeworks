@@ -6,19 +6,22 @@ function Student(name, gender, age) {
 }
 
 Student.prototype.setSubject = function (subjectName) {
-    
+
     this.subject = subjectName;
 }
 
-Student.prototype.addMark = function(...mark){
-
-    let marks = [];
+Student.prototype.addMark = function(mark){
 
      if(this.marks === undefined){ 
         this.marks =[mark]
     } else {
         this.marks.push(mark)
     }
+}
+
+Student.prototype.addMarks = function(...mark){
+
+     this.marks.push(...mark)
 }
 
 Student.prototype.getAverage = function(){
@@ -34,7 +37,11 @@ Student.prototype.getAverage = function(){
 Student.prototype.exclude = function(reason){
 
     this.reason = reason;
-
-    delete this.subject;
-    delete this.marks;
+    
+    if(this.marks === undefined){
+        delete this.subject;
+    }else{
+          delete this.subject;
+          delete this.marks;
+    }  
 }
